@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "modo-dificil": {
+      "hosting": {
+        "admin": [
+          "modo-dificil"
+        ]
+      }
+    }
+  }
+}

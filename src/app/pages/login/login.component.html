@@ -8,29 +8,6 @@
           <div class="card-header">Login</div>
           <div class="card-body">
             <!-- The formGroup 'form' is defined in the component class -->
-            <form [formGroup]="form">
-              <div class="form-group">
-                <label for="email">Email address</label>
-                <!-- The formControlName defines the name of the field in the formGroup -->
-                <input
-                  id="email"
-                  formControlName="email"
-                  type="email"
-                  required
-                  class="form-control"
-                />
-              </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input
-                  id="password"
-                  formControlName="password"
-                  type="password"
-                  required
-                  class="form-control"
-                />
-              </div>
-            </form>
           </div>
           <div class="card-footer">
             <div class="d-flex justify-content-between">
@@ -39,8 +16,7 @@
               </a>
               <!-- The button has a click handler, it will be disabled if the form is not valid -->
               <button
-                (click)="submit()"
-                [disabled]="!form.valid"
+                (click)="loginGoogle()"
                 type="submit"
                 class="btn btn-outline-success"
               >
