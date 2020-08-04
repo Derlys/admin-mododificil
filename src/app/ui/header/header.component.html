@@ -15,8 +15,25 @@
         >Home</a
       >
 
-      <a class="nav-item nav-link" routerLinkActive="active" routerLink="/login"
+      <a
+        *ngIf="!auth.isLoggedIn"
+        class="nav-item nav-link"
+        routerLinkActive="active"
+        routerLink="/login"
         >Login</a
+      >
+      <img
+        class="nav-item mt-2"
+        *ngIf="auth.isLoggedIn"
+        [src]="auth.user?.photoURL"
+        alt=""
+        height="25"
+      />
+      <a
+        *ngIf="auth.isLoggedIn"
+        (click)="auth.logout()"
+        class="nav-item nav-link"
+        >Logout</a
       >
     </div>
   </div>
