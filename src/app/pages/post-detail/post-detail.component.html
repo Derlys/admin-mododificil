@@ -1,0 +1,50 @@
+<div class="container mt-7">
+  <div *ngIf="item$ | async as item" class="row mt-3 mt-md-5 d-flex">
+    <div class="col-12 offset-md-2 col-md-8 mb-3 mb-md-5">
+      <div class="card">
+        <div class="card-body">
+          <form [formGroup]="form">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <!-- The formControlName defines the name of the field in the formGroup -->
+              <input
+                id="title"
+                formControlName="title"
+                type="text"
+                required
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea
+                class="form-control"
+                id="description"
+                rows="5"
+                formControlName="description"
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="content">Content</label>
+              <textarea
+                class="form-control"
+                id="content"
+                rows="8"
+                formControlName="content"
+              ></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <button
+            (click)="savePost()"
+            type="submit"
+            class="btn btn-outline-success"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

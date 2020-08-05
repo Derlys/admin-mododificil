@@ -1,0 +1,13 @@
+<div class="container py-3 py-md-5">
+  <ng-container *ngIf="items$ | async as items">
+    <div class="list-group">
+      <ng-container *ngFor="let item of items">
+        <div class="list-group-item">
+          <a href="" [routerLink]="item.id">
+            {{ item.title }}
+          </a>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>
