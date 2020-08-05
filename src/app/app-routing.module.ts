@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './ui/layout/layout.component';
+import { PostsResolver } from './data/resolvers/posts.resolver';
 
 const routes: Routes = [
   {
@@ -25,6 +26,28 @@ const routes: Routes = [
         path: 'home',
         loadChildren: () =>
           import('./pages/home/home.module').then((m) => m.HomeModule),
+      },
+      {
+        path: 'posts',
+        resolve: {
+          posts: PostsResolver,
+        },
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('./pages/post-list/post-list.module').then(
+                (m) => m.PostListModule
+              ),
+          },
+          {
+            path: ':id',
+            loadChildren: () =>
+              import('./pages/post-detail/post-detail.module').then(
+                (m) => m.PostDetailModule
+              ),
+          },
+        ],
       },
     ],
   },
