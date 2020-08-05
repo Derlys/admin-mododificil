@@ -7,7 +7,9 @@ import { from } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  user: firebase.User;
+  // @ts-ignore
+  user: firebase.User | null;
+  // @ts-ignore
   isLoggedIn: boolean;
 
   constructor(private readonly afa: AngularFireAuth) {
