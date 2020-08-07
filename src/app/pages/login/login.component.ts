@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 
@@ -13,10 +12,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  loginGoogle() {
+  loginGoogle(): void {
     this.service.loginGoogle().subscribe((res) => {
       console.log(res);
-      this.router.navigate(['/']);
+      return this.router.navigate(['/']);
     });
   }
 }

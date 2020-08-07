@@ -29,13 +29,16 @@ export class PostDetailComponent implements OnInit {
       }
     })
   );
-  private itemId: string;
+  private itemId: string | null = null;
 
   constructor(public route: ActivatedRoute, public service: DataService) {}
 
   ngOnInit(): void {}
 
-  savePost() {
+  savePost(): void {
+    if (!this.itemId) {
+      return;
+    }
     this.service.updatePost(this.itemId, this.form.value).subscribe((res) => {
       console.log(res);
     });
