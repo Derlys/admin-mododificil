@@ -44,4 +44,10 @@ export class DataService {
       switchMap(() => this.loadPosts())
     );
   }
+
+  deletePost(itemId: string): Observable<Post[]> {
+    return from(this.collectionRef.doc(itemId).delete()).pipe(
+      switchMap(() => this.loadPosts())
+    );
+  }
 }
