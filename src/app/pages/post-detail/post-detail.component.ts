@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { Post } from '../../data/models/post';
 import { Observable } from 'rxjs';
@@ -31,7 +31,11 @@ export class PostDetailComponent implements OnInit {
   );
   private itemId: string | null = null;
 
-  constructor(public route: ActivatedRoute, public service: DataService) {}
+  constructor(
+    public route: ActivatedRoute,
+    public router: Router,
+    public service: DataService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -41,6 +45,18 @@ export class PostDetailComponent implements OnInit {
     }
     this.service.updatePost(this.itemId, this.form.value).subscribe((res) => {
       console.log(res);
+    });
+  }
+
+  deletePost(): void {
+    if (!window.confirm('Are you sure?')) {
+      return;
+    }
+    if (!this.itemId) {
+      return;
+    }
+    this.service.deletePost(this.itemId).subscribe(() => {
+      return this.router.navigate(['/posts']);
     });
   }
 }

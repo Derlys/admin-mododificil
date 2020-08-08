@@ -1,4 +1,7 @@
 <div class="container py-3 py-md-5">
+  <button (click)="addPost()" type="submit" class="btn btn-outline-success">
+    Add post
+  </button>
   <ng-container *ngIf="items$ | async as items">
     <div class="list-group">
       <ng-container *ngFor="let item of items">

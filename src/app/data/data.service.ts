@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, from, Observable, ObservedValueOf, of } from 'rxjs';
+import { BehaviorSubject, from, Observable, of } from 'rxjs';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/firestore';
 import { collectionData } from 'rxfire/firestore';
 import { Post } from './models/post';
-import { tap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -34,10 +34,20 @@ export class DataService {
     return of(this.postsSubject.getValue().find((post) => post.id === id));
   }
 
-  updatePost(
-    itemId: string,
-    post: Post
-  ): Observable<ObservedValueOf<Promise<void>>> {
-    return from(this.collectionRef.doc(itemId).update(post));
+  updatePost(itemId: string, post: Post): Observable<Post[]> {
+    return from(this.collectionRef.doc(itemId).update(post)).pipe(
+      switchMap(() => this.loadPosts())
+    );
+  }
+  addPost(id: string, title: string): Observable<Post[]> {
+    return from(this.collectionRef.doc(id).set({ title })).pipe(
+      switchMap(() => this.loadPosts())
+    );
+  }
+
+  deletePost(itemId: string): Observable<Post[]> {
+    return from(this.collectionRef.doc(itemId).delete()).pipe(
+      switchMap(() => this.loadPosts())
+    );
   }
 }
