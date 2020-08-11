@@ -16,6 +16,8 @@ export class PostDetailComponent implements OnInit {
     title: new FormControl(''),
     content: new FormControl(''),
     description: new FormControl(''),
+    createdAt: new FormControl(''),
+    published: new FormControl(false),
   });
   item$: Observable<Post | undefined> = this.route.params.pipe(
     map((params) => params.id),
