@@ -16,6 +16,27 @@
               />
             </div>
             <div class="form-group">
+              <label for="createdAt">Created At</label>
+              <!-- The formControlName defines the name of the field in the formGroup -->
+              <input
+                id="createdAt"
+                formControlName="createdAt"
+                type="date"
+                required
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <label for="published">Published</label>
+              <!-- The formControlName defines the name of the field in the formGroup -->
+              <input
+                id="published"
+                formControlName="published"
+                type="checkbox"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
               <label for="description">Description</label>
               <textarea
                 class="form-control"
